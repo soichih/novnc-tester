@@ -1,0 +1,7 @@
+#!/bin/bash
+
+vglclient &
+
+XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
+
+sleep 3600

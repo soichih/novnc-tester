@@ -1,0 +1,14 @@
+Warning: could not find self.pem
+Using local websockify at /usr/local/noVNC/utils/websockify/run
+Starting webserver and WebSockets proxy on port 0.0.0.0:11050
+
+
+Navigate to this URL:
+
+    http://gpu2-pestillilab.psych.indiana.edu:0.0.0.0:11050/vnc.html?host=gpu2-pestillilab.psych.indiana.edu&port=0.0.0.0:11050
+
+Press Ctrl-C to exit
+
+
+
+Terminating WebSockets proxy (387)
