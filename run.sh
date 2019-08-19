@@ -6,13 +6,24 @@ docker rm novnc-test
 set -e
 set -x
 
-mkdir -p lib
-cp -av /usr/lib/x86_64-linux-gnu/libGL* lib
-cp -av /usr/lib/x86_64-linux-gnu/libEGL* lib
-cp -av /usr/lib/x86_64-linux-gnu/libnvidia* lib
-cp -av /usr/lib/x86_64-linux-gnu/libnvoptix* lib
-cp -r -av /usr/lib/x86_64-linux-gnu/vdpau lib
-#cp -r -av /usr/lib/x86_64-linux-gnu/nvidia*/xorg/* lib
+echo "testing host configuration"
+docker run --gpus 1 nvidia/cuda nvidia-smi
+lspci | grep -i NVIDIA
+nvidia-smi | grep Xorg
+vglrun glxinfo | grep -i NVIDIA
+
+echo "host looks good.. proceeding"
+
+if [ ! -d lib ]; 
+then
+	mkdir -p lib
+	cp -av /usr/lib/x86_64-linux-gnu/libGL* lib
+	cp -av /usr/lib/x86_64-linux-gnu/libEGL* lib
+	cp -av /usr/lib/x86_64-linux-gnu/libnvidia* lib
+	cp -av /usr/lib/x86_64-linux-gnu/libnvoptix* lib
+	cp -r -av /usr/lib/x86_64-linux-gnu/vdpau lib
+	#cp -r -av /usr/lib/x86_64-linux-gnu/nvidia*/xorg/* lib
+fi
 
 docker build -t novnc-test .
 

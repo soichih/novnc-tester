@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 vglclient &
 
 XFCE_PANEL_MIGRATE_DEFAULT=true startxfce4 &
 
-sleep 3600
+xfce4-terminal &
+
+#vglrun glxgears 
+
+#sleep 3600
